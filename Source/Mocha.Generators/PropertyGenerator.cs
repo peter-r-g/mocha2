@@ -31,6 +31,8 @@ namespace Mocha.Generators
 			context.AddSource( WithPropertyAttributeHint, """
 				namespace Mocha;
 
+				#nullable enable
+
 				/// <summary>
 				/// <para>
 				/// <b>Note:</b> this structure must be marked as partial.
@@ -51,6 +53,8 @@ namespace Mocha.Generators
 						Name = name;
 					}
 				}
+
+				#nullable restore
 				""" );
 		}
 
