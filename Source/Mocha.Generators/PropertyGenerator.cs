@@ -140,8 +140,7 @@ namespace Mocha.Generators
 			// NOTE: What is this used for?
 			var requestedPropertyName = attribute.ConstructorArguments.FirstOrDefault().Value as string;
 
-			return new WithPropertyData( containerFQN, targetName, requestedPropertyName, typeFQN, containerName,
-				containingNamespace, [] );
+			return new WithPropertyData( containerFQN, targetName, requestedPropertyName, typeFQN, containerName, containingNamespace );
 		}
 
 		private readonly record struct WithPropertyData
@@ -153,11 +152,8 @@ namespace Mocha.Generators
 			public readonly string ContainerName;
 			public readonly string? ContainingNamespace;
 
-			public readonly bool IsError;
-			public readonly ImmutableArray<Diagnostic> Diagnostics;
-
 			public WithPropertyData( string containerFQN, string targetName, string? requestedPropertyName, string typeFQN,
-				string containerName, string? containingNamespace, ImmutableArray<Diagnostic> diagnostics )
+				string containerName, string? containingNamespace )
 			{
 				ContainerFQN = containerFQN;
 				TargetName = targetName;
@@ -165,22 +161,6 @@ namespace Mocha.Generators
 				TypeFQN = typeFQN;
 				ContainerName = containerName;
 				ContainingNamespace = containingNamespace;
-
-				IsError = false;
-				Diagnostics = diagnostics;
-			}
-
-			public WithPropertyData( ImmutableArray<Diagnostic> diagnostics )
-			{
-				ContainerFQN = string.Empty;
-				TargetName = string.Empty;
-				RequestedPropertyName = null;
-				TypeFQN = string.Empty;
-				ContainerName = string.Empty;
-				ContainingNamespace = null;
-
-				IsError = true;
-				Diagnostics = diagnostics;
 			}
 		}
 

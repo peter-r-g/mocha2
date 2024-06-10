@@ -147,7 +147,7 @@ namespace Mocha.Generators
 				: context.TargetSymbol.ContainingNamespace.ToDisplayString();
 			var typeName = context.TargetSymbol.Name;
 
-			return new ResourceData( containingNamespace, typeName, [] );
+			return new ResourceData( containingNamespace, typeName );
 		}
 
 		private readonly record struct ResourceData
@@ -155,25 +155,10 @@ namespace Mocha.Generators
 			public readonly string? ContainingNamespace;
 			public readonly string TypeName;
 
-			public readonly bool IsError;
-			public readonly ImmutableArray<Diagnostic> Diagnostics;
-
-			public ResourceData( string? containingNamespace, string typeName, ImmutableArray<Diagnostic> diagnostics )
+			public ResourceData( string? containingNamespace, string typeName )
 			{
 				ContainingNamespace = containingNamespace;
 				TypeName = typeName;
-
-				IsError = false;
-				Diagnostics = diagnostics;
-			}
-
-			public ResourceData( ImmutableArray<Diagnostic> diagnostics )
-			{
-				ContainingNamespace = null;
-				TypeName = string.Empty;
-
-				IsError = true;
-				Diagnostics = diagnostics;
 			}
 		}
 	}
